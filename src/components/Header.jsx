@@ -18,9 +18,8 @@ export default function Header() {
     <header className="site-header">
       <div className="shell header-row">
         <Link to="/" className="logo-link" onClick={() => setOpen(false)} aria-label="Nei González art">
-          <img src="/assets/logo-nei-gonzalez-art.png" alt="Nei González art" />
+          <img src={`${import.meta.env.BASE_URL}assets/logo-nei-gonzalez-art.png`} alt="Nei González art" />
         </Link>
-
         <button
           className="menu-toggle"
           type="button"
