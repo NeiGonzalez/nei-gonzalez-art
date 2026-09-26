@@ -1,3 +1,4 @@
+const asset = (path) => `${import.meta.env.BASE_URL}${path}`
 export const STATUS = {
   FOR_SALE: 1,
   SOLD: 2,
@@ -22,8 +23,8 @@ export const works = [
     status: STATUS.FOR_SALE,
     priceUSD: '900',
     images: [
-      { id: 'YMA_01_01', src: '/assets/works/YMA_01_01.webp', alt: 'YMA O HYD, vista principal' },
-      { id: 'YMA_01_02', src: '/assets/works/YMA_01_02.webp', alt: 'YMA O HYD, detalle' },
+      { id: 'YMA_01_01', src: asset('assets/works/YMA_01_01.webp'), alt: 'YMA O HYD, vista principal' },
+      { id: 'YMA_01_02', src: asset('assets/works/YMA_01_02.webp'), alt: 'YMA O HYD, detalle' },
     ],
     description: 'Obra contextual realizada para una muestra colectiva conmemorativa de la llegada de la primera colonia galesa a Argentina.',
     commercialInfo: 'Disponible para venta. Consultar condiciones de embalaje, envío y entrega.',
@@ -41,7 +42,7 @@ export const works = [
     status: STATUS.SOLD,
     priceUSD: '',
     images: [
-      { id: 'SUMMA_01_01', src: '/assets/works/SUMMA_01_01.webp', alt: 'SUMMA INMUNITAS, detalle' },
+      { id: 'SUMMA_01_01', src: asset('assets/works/SUMMA_01_01.webp'), alt: 'SUMMA INMUNITAS, detalle' },
     ],
     description: 'Obra de la serie INMUNITAS.',
     commercialInfo: '',
