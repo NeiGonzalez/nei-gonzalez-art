@@ -20,7 +20,7 @@ export default function Shop() {
         {available.map((work) => (
           <Link className="work-card" to={`/shop/${work.id}`} key={work.id}>
             <div className="work-card-image">
-              <img src={work.images[0].src} alt={work.images[0].alt} />
+              <img src={work.images[0].src} alt={work.images[0].alt} loading="eager" fetchPriority="high" decoding="async" />
               <div className="work-card-markers">
                 {work.images.length > 1 && <span className="media-indicator" aria-label="Multiple images"><MultipleIcon /></span>}
               </div>

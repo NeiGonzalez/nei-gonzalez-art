@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { STATUS, works } from '../data/works'
 
 function MultipleIcon() {
@@ -14,17 +14,19 @@ function MultipleIcon() {
 export default function WorkViewer({ mode = 'works' }) {
   const { id } = useParams()
   const navigate = useNavigate()
-  const index = works.findIndex((item) => item.id === id)
-  const work = works[index]
+  const navigationWorks = mode === 'shop' ? works.filter((item) => item.status === STATUS.FOR_SALE) : works
+  const index = navigationWorks.findIndex((item) => item.id === id)
+  const work = works.find((item) => item.id === id)
   const [detailIndex, setDetailIndex] = useState(0)
 
   useEffect(() => setDetailIndex(0), [id])
 
   if (!work) return <section className="page"><span className="eyebrow">{mode === 'shop' ? 'Shop' : 'Works'}</span><p>Work not found.</p></section>
 
-  const previous = works[(index - 1 + works.length) % works.length]
-  const next = works[(index + 1) % works.length]
-  const detail = work.images[detailIndex]
+  const previous = navigationWorks[(index - 1 + navigationWorks.length) % navigationWorks.length]
+  const next = navigationWorks[(index + 1) % navigationWorks.length]
+  const safeDetailIndex = Math.min(detailIndex, work.images.length - 1)
+  const detail = work.images[safeDetailIndex]
   const isShop = mode === 'shop'
 
   return (
@@ -57,39 +59,41 @@ export default function WorkViewer({ mode = 'works' }) {
             <div className="sale-links">
               {work.marketArgentina && <a href={work.marketArgentina} target="_blank" rel="noreferrer">Mercado Libre</a>}
               {work.marketInternational && <a href={work.marketInternational} target="_blank" rel="noreferrer">Artsy</a>}
-              {!work.marketArgentina && !work.marketInternational && <a href="/contact">Consultar compra</a>}
+              {!work.marketArgentina && !work.marketInternational && <Link to="/contact">Consultar compra</Link>}
             </div>
           </div>
         )}
       </div>
 
+      <button className="work-nav-arrow work-nav-prev" type="button" onClick={() => navigate(`${isShop ? '/shop/' : '/works/'}${previous.id}`)} title="Obra anterior" aria-label="Obra anterior">‹</button>
+
       <div className="work-view-stage">
-        <button className="work-nav-arrow work-nav-prev" type="button" onClick={() => navigate(`${isShop ? '/shop/' : '/works/'}${previous.id}`)} title="Obra anterior" aria-label="Obra anterior">‹</button>
-
         <div className="work-image-wrap">
-          <img src={detail.src} alt={detail.alt} />
-          {work.images.length > 1 && detailIndex > 0 && (
-            <button className="detail-arrow detail-prev" type="button" onClick={() => setDetailIndex((current) => current - 1)} aria-label="Detalle anterior">‹</button>
-          )}
-          {work.images.length > 1 && detailIndex < work.images.length - 1 && (
-            <button className="detail-arrow detail-next" type="button" onClick={() => setDetailIndex((current) => current + 1)} aria-label="Detalle siguiente">›</button>
-          )}
-          {work.images.length > 1 && (
-            <div className="detail-dots" aria-label="Position within work">
-              {work.images.map((image, imageIndex) => (
-                <button key={image.id} type="button" className={imageIndex === detailIndex ? 'is-active' : ''} onClick={() => setDetailIndex(imageIndex)} aria-label={`Detalle ${imageIndex + 1}`} />
-              ))}
-            </div>
-          )}
+          <div className="work-image-frame">
+            <img src={detail.src} alt={detail.alt} loading="eager" fetchPriority="high" decoding="async" />
+            {work.images.length > 1 && safeDetailIndex > 0 && (
+              <button className="detail-arrow detail-prev" type="button" onClick={() => setDetailIndex((current) => current - 1)} aria-label="Detalle anterior">‹</button>
+            )}
+            {work.images.length > 1 && safeDetailIndex < work.images.length - 1 && (
+              <button className="detail-arrow detail-next" type="button" onClick={() => setDetailIndex((current) => current + 1)} aria-label="Detalle siguiente">›</button>
+            )}
+            {work.images.length > 1 && (
+              <div className="detail-dots" aria-label="Position within work">
+                {work.images.map((image, imageIndex) => (
+                  <button key={image.id} type="button" className={imageIndex === safeDetailIndex ? 'is-active' : ''} onClick={() => setDetailIndex(imageIndex)} aria-label={`Detalle ${imageIndex + 1}`} />
+                ))}
+              </div>
+            )}
+          </div>
         </div>
-
-        <button className="work-nav-arrow work-nav-next" type="button" onClick={() => navigate(`${isShop ? '/shop/' : '/works/'}${next.id}`)} title="Obra siguiente" aria-label="Obra siguiente">›</button>
       </div>
+
+      <button className="work-nav-arrow work-nav-next" type="button" onClick={() => navigate(`${isShop ? '/shop/' : '/works/'}${next.id}`)} title="Obra siguiente" aria-label="Obra siguiente">›</button>
 
       <div className="thumb-rail">
         {work.images.map((image, imageIndex) => (
-          <button key={image.id} type="button" className={imageIndex === detailIndex ? 'is-active' : ''} onClick={() => setDetailIndex(imageIndex)}>
-            <img src={image.src} alt="" />
+          <button key={image.id} type="button" className={imageIndex === safeDetailIndex ? 'is-active' : ''} onClick={() => setDetailIndex(imageIndex)}>
+            <img src={image.src} alt="" loading="eager" decoding="async" />
             {imageIndex === 0 && work.images.length > 1 && <span className="thumb-multiple"><MultipleIcon /></span>}
           </button>
         ))}

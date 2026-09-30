@@ -13,7 +13,7 @@ import Contact from './pages/Contact'
 import ShopDetail from './pages/ShopDetail'
 
 export default function App() {
-  return <BrowserRouter>
+  return <BrowserRouter basename={import.meta.env.BASE_URL.replace(/\/$/, '')}>
     <Header />
     <main><Routes>
       <Route path="/" element={<Home />} />

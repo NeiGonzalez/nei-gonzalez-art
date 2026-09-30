@@ -27,7 +27,7 @@ function CopyButton({ value }) {
 }
 
 function ContactItem({ label, value, href, copyValue, icon }) {
-  const external = href && !href.startsWith('mailto:')
+  const external = Boolean(href)
 
   return (
     <div className="contact-item">
@@ -65,8 +65,8 @@ export default function Contact() {
       </div>
 
       <aside className="contact-data">
-        <ContactItem label="WhatsApp" value="Agregar número" href="https://wa.me/" copyValue="" icon="whatsapp" />
-        <ContactItem label="Instagram" value="@neigonzalez.art" href="https://www.instagram.com/" copyValue="@neigonzalez.art" icon="instagram" />
+        <ContactItem label="WhatsApp" value="NeiGonzalez.ar" href="https://wa.me/NeiGonzalez.ar" copyValue="NeiGonzalez.ar" icon="whatsapp" />
+        <ContactItem label="Instagram" value="@neigonzalez.art" href="https://www.instagram.com/neigonzalez.art/" copyValue="@neigonzalez.art" icon="instagram" />
         <ContactItem label="Email" value="neigonzalez.art@gmail.com" href="mailto:neigonzalez.art@gmail.com" copyValue="neigonzalez.art@gmail.com" icon="email" />
       </aside>
 

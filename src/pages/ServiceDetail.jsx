@@ -30,7 +30,7 @@ export default function ServiceDetail() {
 
       <div className="service-detail-gallery">
         <div className="service-detail-image">
-          <img src={serviceImages[imageIndex]} alt="" />
+          <img src={serviceImages[imageIndex]} alt="" loading="eager" fetchPriority="high" decoding="async" />
           {serviceImages.length > 1 && <>
             {imageIndex > 0 && <button className="service-image-arrow service-image-prev" type="button" onClick={() => setImageIndex((current) => current - 1)} aria-label="Previous image">‹</button>}
             {imageIndex < serviceImages.length - 1 && <button className="service-image-arrow service-image-next" type="button" onClick={() => setImageIndex((current) => current + 1)} aria-label="Next image">›</button>}

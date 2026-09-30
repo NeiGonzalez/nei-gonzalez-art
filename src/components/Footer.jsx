@@ -28,9 +28,9 @@ export default function Footer() {
       <div className="shell footer-row">
         <span>© {new Date().getFullYear()} Nei González art</span>
         <div className="footer-socials">
-          <a href="https://www.instagram.com/" target="_blank" rel="noreferrer" aria-label="Instagram"><Icon type="instagram" /></a>
-          <a href="mailto:neigonzalez.art@gmail.com" aria-label="Email"><Icon type="email" /></a>
-          <a href="https://wa.me/" target="_blank" rel="noreferrer" aria-label="WhatsApp"><Icon type="whatsapp" /></a>
+          <a href="https://www.instagram.com/neigonzalez.art/" target="_blank" rel="noreferrer" aria-label="Instagram"><Icon type="instagram" /></a>
+          <a href="mailto:neigonzalez.art@gmail.com" target="_blank" rel="noreferrer" aria-label="Email"><Icon type="email" /></a>
+          <a href="https://wa.me/NeiGonzalez.ar/" target="_blank" rel="noreferrer" aria-label="WhatsApp"><Icon type="whatsapp" /></a>
         </div>
         <span>Designed &amp; developed by Nei González</span>
       </div>
