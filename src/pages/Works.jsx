@@ -108,7 +108,6 @@ export default function Works() {
                   }}
                   aria-label={yearDescending ? 'Show oldest years first' : 'Show newest years first'}
                 >
-                  {yearDescending ? '▾' : '▴'}
                 </button>
               )}
             </span>

@@ -3,7 +3,6 @@ import { visualColumns } from '../data/siteContent'
 export default function About() {
   return (
     <section className="page editorial-page">
-      <VisualStrip columns={visualColumns} />
       <div className="editorial-copy">
         <span className="eyebrow">About</span>
         <h1 className="about-name">Nei González</h1>
@@ -13,6 +12,7 @@ export default function About() {
         <h2>Distinciones y Muestras</h2>
         <div className="cv-years">2026<br />2025<br />2024<br />2023<br />2022<br />2018<br />2017<br />2015<br />2010</div>
       </div>
+      <VisualStrip columns={visualColumns} />
     </section>
   )
 }

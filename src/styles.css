@@ -2054,3 +2054,250 @@ main { min-height: calc(100svh - var(--header-h) - var(--footer-h)); }
     font-size: 22px;
   }
 }
+
+/* V8 structural repair: final cascade overrides only. */
+
+/* Works / Shop: never impose a box ratio on work thumbnails. */
+.works-grid .work-card-image,
+.shop-page .work-card-image {
+  height: auto !important;
+  min-height: 0 !important;
+  aspect-ratio: auto !important;
+  overflow: visible !important;
+}
+.works-grid .work-card-image img,
+.shop-page .work-card-image img {
+  display: block !important;
+  width: 100% !important;
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  aspect-ratio: auto !important;
+  object-fit: contain !important;
+}
+
+/* Years: the order control is a single CSS triangle, with no text arrow. */
+.works-toolbar .year-order {
+  position: relative !important;
+  display: inline-block !important;
+  width: 14px !important;
+  height: 16px !important;
+  margin-left: 4px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  color: transparent !important;
+  font-size: 0 !important;
+  vertical-align: middle !important;
+}
+.works-toolbar .year-order::before {
+  content: "" !important;
+  position: absolute !important;
+  left: 50% !important;
+  top: 50% !important;
+  width: 0 !important;
+  height: 0 !important;
+  transform: translate(-50%, -50%) !important;
+  border-left: 5px solid transparent !important;
+  border-right: 5px solid transparent !important;
+}
+.works-toolbar .year-order.is-descending::before {
+  border-top: 8px solid var(--terracotta) !important;
+  border-bottom: 0 !important;
+}
+.works-toolbar .year-order.is-ascending::before {
+  border-bottom: 8px solid var(--terracotta) !important;
+  border-top: 0 !important;
+}
+
+/* About / Statement: copy left, dynamic strip right, without a blank block above. */
+.editorial-page {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) 270px !important;
+  gap: 38px !important;
+  align-items: start !important;
+}
+.editorial-page .editorial-copy {
+  grid-column: 1 !important;
+  grid-row: 1 !important;
+  min-width: 0 !important;
+}
+.editorial-page .visual-strip {
+  grid-column: 2 !important;
+  grid-row: 1 !important;
+  width: 270px !important;
+  margin: 0 !important;
+  float: none !important;
+}
+
+/* Contact: keep the form, contact data and dynamic strip in their own columns. */
+.contact-page {
+  display: grid !important;
+  grid-template-columns: minmax(0, 540px) minmax(250px, 310px) 270px !important;
+  gap: 30px !important;
+  align-items: start !important;
+}
+.contact-page .contact-form-column {
+  grid-column: 1 !important;
+  grid-row: 1 !important;
+  min-width: 0 !important;
+}
+.contact-page .contact-data {
+  grid-column: 2 !important;
+  grid-row: 1 !important;
+  width: auto !important;
+  min-width: 0 !important;
+  margin-top: 105px !important;
+  padding-left: 22px !important;
+}
+.contact-page .visual-strip {
+  grid-column: 3 !important;
+  grid-row: 1 !important;
+  width: 270px !important;
+  margin: 0 !important;
+  float: none !important;
+}
+
+/* Work-detail internal arrows: smaller, centered and attached to the rendered image edge. */
+.work-image-frame .detail-arrow {
+  width: 19px !important;
+  height: 19px !important;
+  padding: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  line-height: 1 !important;
+  font-size: 13px !important;
+  box-sizing: border-box !important;
+}
+.work-image-frame .detail-prev { left: 1px !important; }
+.work-image-frame .detail-next { right: 1px !important; }
+
+/* Services desktop: thicker but shorter chevrons; mobile keeps its existing thicker size. */
+@media (min-width: 761px) {
+  .service-nav {
+    font-weight: 600 !important;
+    transform: translateY(-50%) scaleX(.62) !important;
+    transform-origin: center !important;
+  }
+}
+
+/* Mobile: preserve the side-by-side editorial structure and contact strip. */
+@media (max-width: 1120px) and (min-width: 761px) {
+  .editorial-page {
+    grid-template-columns: minmax(0, 1fr) 72px !important;
+    gap: 14px !important;
+  }
+  .editorial-page .visual-strip {
+    width: 72px !important;
+  }
+  .visual-strip-item img,
+  .visual-strip-item.direction-vertical-reverse img {
+    width: 72px !important;
+    min-width: 72px !important;
+  }
+  .contact-page {
+    grid-template-columns: minmax(0, 1fr) 250px 72px !important;
+    gap: 18px !important;
+  }
+  .contact-page .contact-data { grid-column: 2 !important; }
+  .contact-page .visual-strip { grid-column: 3 !important; width: 72px !important; display: block !important; }
+}
+
+@media (max-width: 760px) {
+  .works-grid .work-card-image img,
+  .shop-page .work-card-image img {
+    width: 100% !important;
+    height: auto !important;
+    max-height: none !important;
+  }
+  .works-toolbar .year-order {
+    width: 13px !important;
+    height: 15px !important;
+    margin-left: 3px !important;
+  }
+  .works-toolbar .year-order::before {
+    border-left-width: 4.5px !important;
+    border-right-width: 4.5px !important;
+  }
+  .works-toolbar .year-order.is-descending::before { border-top-width: 7px !important; }
+  .works-toolbar .year-order.is-ascending::before { border-bottom-width: 7px !important; }
+
+  .editorial-page {
+    grid-template-columns: minmax(0, 1fr) 64px !important;
+    gap: 9px !important;
+  }
+  .editorial-page .visual-strip {
+    width: 64px !important;
+  }
+  .visual-strip-item img,
+  .visual-strip-item.direction-vertical-reverse img {
+    width: 64px !important;
+    min-width: 64px !important;
+  }
+  .editorial-copy {
+    font-size: 12.5px;
+    line-height: 1.46;
+  }
+
+  .contact-page {
+    grid-template-columns: minmax(0, 1fr) 64px !important;
+    grid-template-rows: auto auto !important;
+    gap: 18px 9px !important;
+    min-height: auto !important;
+    overflow: visible !important;
+  }
+  .contact-page .contact-form-column {
+    grid-column: 1 !important;
+    grid-row: 1 !important;
+  }
+  .contact-page .contact-data {
+    grid-column: 1 !important;
+    grid-row: 2 !important;
+    margin-top: 0 !important;
+    padding-left: 0 !important;
+    padding-top: 18px !important;
+  }
+  .contact-page .visual-strip {
+    grid-column: 2 !important;
+    grid-row: 1 / span 2 !important;
+    width: 64px !important;
+    display: block !important;
+  }
+  .contact-page .visual-strip-item { height: 112px !important; }
+  .contact-page .visual-strip-item img,
+  .contact-page .visual-strip-item.direction-vertical-reverse img {
+    width: 64px !important;
+    min-width: 64px !important;
+    height: 112px !important;
+  }
+
+  .work-image-frame .detail-arrow {
+    width: 17px !important;
+    height: 17px !important;
+    font-size: 11px !important;
+  }
+  .work-image-frame .detail-prev { left: 1px !important; }
+  .work-image-frame .detail-next { right: 1px !important; }
+
+  .service-close { font-size: 20px !important; }
+
+  .footer-row {
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) !important;
+    gap: 5px !important;
+    width: 100% !important;
+  }
+  .footer-row > span:first-child,
+  .footer-row > span:last-child {
+    display: block !important;
+    min-width: 0 !important;
+    font-size: 8px !important;
+    line-height: 1.2 !important;
+    letter-spacing: .04em !important;
+  }
+  .footer-row > span:first-child { text-align: left !important; }
+  .footer-row > span:last-child { text-align: right !important; }
+  .footer-socials { gap: 1px !important; min-width: 0 !important; }
+  .footer-socials a { padding: 0 4px !important; }
+  .footer-socials svg { width: 17px !important; height: 17px !important; }
+}
