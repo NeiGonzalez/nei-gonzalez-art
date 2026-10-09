@@ -62,7 +62,7 @@ export default function Contact() {
         <form className="contact-form" onSubmit={submit}>
           <label>NAME<input type="text" name="name" autoComplete="name" required /></label>
           <label>EMAIL<input type="email" name="email" autoComplete="email" required /></label>
-          <label>PHONE <span className="optional">(optional)</span><input type="tel" name="phone" autoComplete="tel" /></label>
+          <label className="phone-field"><span className="phone-label">PHONE <span className="optional">(optional)</span></span><input type="tel" name="phone" autoComplete="tel" /></label>
           <label>MESSAGE<textarea name="message" rows="7" required /></label>
           <button type="submit">SEND</button>
         </form>

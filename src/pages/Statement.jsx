@@ -21,15 +21,13 @@ export default function Statement() {
       <div className="editorial-copy statement-copy">
         <span className="eyebrow">Statement</span>
         <h1>The coexistence of opposites</h1>
-        {firstSection.map((paragraph, index) => (
-          <p key={index}>
-            {index === 0 ? <><span className="statement-editorial-phrase">The coexistence of opposites runs through the way I understand life and the way I build my work. I am interested in that which, even when different or antagonistic, can coexist and form part of a single whole.</span>{paragraph.slice("The coexistence of opposites runs through the way I understand life and the way I build my work. I am interested in that which, even when different or antagonistic, can coexist and form part of a single whole.".length)}</> : paragraph}
-          </p>
-        ))}
+        <p className="statement-editorial-phrase">The coexistence of opposites runs through the way I understand life and the way I build my work. I am interested in that which, even when different or antagonistic, can coexist and form part of a single whole.</p>
+        {firstSection.map((paragraph, index) => <p key={index}>{index === 0 ? paragraph.slice("The coexistence of opposites runs through the way I understand life and the way I build my work. I am interested in that which, even when different or antagonistic, can coexist and form part of a single whole.".length).trim() : paragraph}</p>)}
         <h2>Of external noise and inner silence</h2>
+        <p className="statement-editorial-phrase">In the midst of external noise, I long for that moment, the one of the encounter with the point of rest, to produce in whoever looks an instant of inner silence and, in that silence, an encounter with oneself, even if only for an instant.</p>
         {finalSection.map((paragraph, index) => (
           <p key={index}>
-            {index === 0 ? <><span className="statement-editorial-phrase">In the midst of external noise, I long for that moment, the one of the encounter with the point of rest, to produce in whoever looks an instant of inner silence and, in that silence, an encounter with oneself, even if only for an instant.</span>{paragraph.slice("In the midst of external noise, I long for that moment, the one of the encounter with the point of rest, to produce in whoever looks an instant of inner silence and, in that silence, an encounter with oneself, even if only for an instant.".length)}</> : index === 2 ? <>{paragraph.slice(0, paragraph.lastIndexOf('If that encounter produces even a small moment of silence, peace or serenity, then for me the work has already found a reason to exist.'))}<strong className="statement-final-sentence">If that encounter produces even a small moment of silence, peace or serenity, then for me the work has already found a reason to exist.</strong></> : paragraph}
+            {index === 0 ? paragraph.slice("In the midst of external noise, I long for that moment, the one of the encounter with the point of rest, to produce in whoever looks an instant of inner silence and, in that silence, an encounter with oneself, even if only for an instant.".length).trim() : index === 2 ? <>{paragraph.slice(0, paragraph.lastIndexOf('If that encounter produces even a small moment of silence, peace or serenity, then for me the work has already found a reason to exist.'))}<strong className="statement-final-sentence">If that encounter produces even a small moment of silence, peace or serenity, then for me the work has already found a reason to exist.</strong></> : paragraph}
           </p>
         ))}
       </div>
