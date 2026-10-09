@@ -1,4 +1,5 @@
 import { visualColumns } from '../data/siteContent'
+import { VisualStrip } from './About'
 
 const biography = [
   "Visual Arts Teacher, Provincial School of Visual Arts of Entre Ríos, Argentina",
