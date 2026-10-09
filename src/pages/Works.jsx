@@ -59,7 +59,7 @@ export default function Works() {
 
   const grouped = filter === 'series'
     ? orderedVisible.reduce((groups, work) => {
-        const key = work.series || 'Sin serie'
+        const key = work.series || 'Unassigned works'
         const existing = groups.find(([series]) => series === key)
         if (existing) existing[1].push(work)
         else groups.push([key, [work]])
@@ -139,7 +139,7 @@ export default function Works() {
 
 function YearGroups({ works }) {
   const grouped = works.reduce((groups, work) => {
-    const key = work.year || 'Sin año'
+    const key = work.year || 'Undated'
     const existing = groups.find(([year]) => year === key)
     if (existing) existing[1].push(work)
     else groups.push([key, [work]])

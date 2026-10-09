@@ -6,11 +6,13 @@ export default function About() {
       <div className="editorial-copy">
         <span className="eyebrow">About</span>
         <h1 className="about-name">Nei González</h1>
-        <p>Docente en Artes Visuales Escuela Provincial de Entre Ríos.</p>
-        <p>Productora y Gestora Cultural Universidad Blas Pascal. Córdoba.</p>
-        <p>Nei González vive y trabaja en la localidad de Trevelin, provincia de Chubut. Participa en exhibiciones en galerías de arte, museos y centros culturales en Trevelin, Córdoba y a nivel nacional. Sus obras forman parte de colecciones privadas y espacios públicos.</p>
-        <h2>Distinciones y Muestras</h2>
-        <div className="cv-years">2026<br />2025<br />2024<br />2023<br />2022<br />2018<br />2017<br />2015<br />2010</div>
+        <p>Visual Arts Teacher, Provincial School of Visual Arts of Entre Ríos, Argentina.</p>
+        <p>Cultural Producer and Manager, Blas Pascal University, Córdoba, Argentina.</p>
+        <p>Nei González lives and works in Trevelin, in the province of Chubut, in Argentine Patagonia. She participates in exhibitions at art galleries, museums and cultural centers in Trevelin, Córdoba and across Argentina. Her works are part of private collections and public spaces.</p>
+        <h2>Exhibitions and Activities</h2>
+        <div className="cv-years">
+          {[2026, 2025, 2024, 2023, 2021, 2017, 2015, 2013, 2012, 2011, 2010, 2009, 2008, 2007].map((year) => <div className="cv-year" key={year}>{year}</div>)}
+        </div>
       </div>
       <VisualStrip columns={visualColumns} />
     </section>
@@ -19,7 +21,6 @@ export default function About() {
 
 export function VisualStrip({ columns }) {
   const groups = [columns.top, columns.center, columns.bottom]
-
   return (
     <aside className="visual-strip" aria-hidden="true">
       {groups.map((images, index) => (

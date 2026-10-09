@@ -41,46 +41,46 @@ export default function WorkViewer({ mode = 'works' }) {
         {work.description && <p className="work-description">{work.description}</p>}
 
         <div className="work-specs">
-          {work.technique && <p><strong>Técnica</strong><span>{work.technique}</span></p>}
-          {work.size && <p><strong>Medidas</strong><span>{work.size}</span></p>}
-          {work.year && <p><strong>Año</strong><span>{work.year}</span></p>}
+          {work.technique && <p><strong>Technique</strong><span>{work.technique}</span></p>}
+          {work.size && <p><strong>Dimensions</strong><span>{work.size}</span></p>}
+          {work.year && <p><strong>Year</strong><span>{work.year}</span></p>}
         </div>
 
         {work.status === STATUS.SOLD && (
-          <p className="work-status"><span className="sold-dot-inline" />Vendida</p>
+          <p className="work-status"><span className="sold-dot-inline" />Sold</p>
         )}
-        {work.status === STATUS.PRIVATE_COLLECTION && <p className="work-status">Colección privada de la artista</p>}
+        {work.status === STATUS.PRIVATE_COLLECTION && <p className="work-status">Artist’s private collection</p>}
 
         {isShop && work.status === STATUS.FOR_SALE && (
           <div className="commercial-info">
             {work.priceUSD && <p className="shop-detail-price">USD {work.priceUSD}</p>}
             {work.commercialInfo && <p>{work.commercialInfo}</p>}
-            <p>Obra original. Consultá por embalaje, envío y condiciones de entrega.</p>
+            <p>Original artwork. Contact me about packaging, shipping and delivery options.</p>
             <div className="sale-links">
               {work.marketArgentina && <a href={work.marketArgentina} target="_blank" rel="noreferrer">Mercado Libre</a>}
               {work.marketInternational && <a href={work.marketInternational} target="_blank" rel="noreferrer">Artsy</a>}
-              {!work.marketArgentina && !work.marketInternational && <Link to="/contact">Consultar compra</Link>}
+              {!work.marketArgentina && !work.marketInternational && <Link to="/contact">INQUIRE ABOUT THIS WORK</Link>}
             </div>
           </div>
         )}
       </div>
 
-      <button className="work-nav-arrow work-nav-prev" type="button" onClick={() => navigate(`${isShop ? '/shop/' : '/works/'}${previous.id}`)} title="Obra anterior" aria-label="Obra anterior">‹</button>
+      <button className="work-nav-arrow work-nav-prev" type="button" onClick={() => navigate(`${isShop ? '/shop/' : '/works/'}${previous.id}`)} title="Previous work" aria-label="Previous work">‹</button>
 
       <div className="work-view-stage">
         <div className="work-image-wrap">
           <div className="work-image-frame">
             <img src={detail.src} alt={detail.alt} loading="eager" fetchPriority="high" decoding="async" />
             {work.images.length > 1 && safeDetailIndex > 0 && (
-              <button className="detail-arrow detail-prev" type="button" onClick={() => setDetailIndex((current) => current - 1)} aria-label="Detalle anterior">‹</button>
+              <button className="detail-arrow detail-prev" type="button" onClick={() => setDetailIndex((current) => current - 1)} aria-label="Previous detail">‹</button>
             )}
             {work.images.length > 1 && safeDetailIndex < work.images.length - 1 && (
-              <button className="detail-arrow detail-next" type="button" onClick={() => setDetailIndex((current) => current + 1)} aria-label="Detalle siguiente">›</button>
+              <button className="detail-arrow detail-next" type="button" onClick={() => setDetailIndex((current) => current + 1)} aria-label="Next detail">›</button>
             )}
             {work.images.length > 1 && (
               <div className="detail-dots" aria-label="Position within work">
                 {work.images.map((image, imageIndex) => (
-                  <button key={image.id} type="button" className={imageIndex === safeDetailIndex ? 'is-active' : ''} onClick={() => setDetailIndex(imageIndex)} aria-label={`Detalle ${imageIndex + 1}`} />
+                  <button key={image.id} type="button" className={imageIndex === safeDetailIndex ? 'is-active' : ''} onClick={() => setDetailIndex(imageIndex)} aria-label={`Detail ${imageIndex + 1}`} />
                 ))}
               </div>
             )}
@@ -88,7 +88,7 @@ export default function WorkViewer({ mode = 'works' }) {
         </div>
       </div>
 
-      <button className="work-nav-arrow work-nav-next" type="button" onClick={() => navigate(`${isShop ? '/shop/' : '/works/'}${next.id}`)} title="Obra siguiente" aria-label="Obra siguiente">›</button>
+      <button className="work-nav-arrow work-nav-next" type="button" onClick={() => navigate(`${isShop ? '/shop/' : '/works/'}${next.id}`)} title="Next work" aria-label="Next work">›</button>
 
       <div className="thumb-rail">
         {work.images.map((image, imageIndex) => (

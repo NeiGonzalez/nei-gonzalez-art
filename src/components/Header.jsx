@@ -2,13 +2,13 @@ import { useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 
 const links = [
-  ['/', 'Home'],
-  ['/works', 'Works'],
-  ['/shop', 'Shop'],
-  ['/services', 'Services'],
-  ['/about', 'About'],
-  ['/statement', 'Statement'],
-  ['/contact', 'Contact'],
+  ['/', 'HOME'],
+  ['/works', 'WORKS'],
+  ['/shop', 'SHOP'],
+  ['/services', 'SERVICES'],
+  ['/about', 'ABOUT'],
+  ['/statement', 'STATEMENT'],
+  ['/contact', 'CONTACT'],
 ]
 
 export default function Header() {
@@ -24,7 +24,7 @@ export default function Header() {
           className="menu-toggle"
           type="button"
           onClick={() => setOpen((value) => !value)}
-          aria-label="Abrir menú"
+          aria-label="Open menu"
           aria-expanded={open}
         >
           <span /><span /><span />
@@ -37,9 +37,7 @@ export default function Header() {
             </NavLink>
           ))}
           <span className="nav-divider" aria-hidden="true" />
-          <button className="language-button" type="button" onClick={() => setOpen(false)}>
-            English
-          </button>
+          <Link className="language-button" to="/spanish-under-construction" onClick={() => setOpen(false)}>ESPAÑOL</Link>
         </nav>
       </div>
     </header>

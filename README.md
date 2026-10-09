@@ -22,3 +22,10 @@ Abrir la dirección local indicada por Vite.
 - `public/favicon.svg`: favicon NGa.
 
 Los originales de las fotografías deben conservarse fuera de las versiones optimizadas para la web.
+
+
+## Version 11
+
+This version updates the English interface copy, adds the ESPAÑOL language link to a Spanish-under-construction page, translates service and artwork metadata labels, sets the shop price placeholder to `USD xxx.xx`, changes the contact form to open an email draft instead of falsely reporting that a message was sent, and includes responsive layout refinements.
+
+The contact form uses the visitor's default email application; it does not submit to a server.

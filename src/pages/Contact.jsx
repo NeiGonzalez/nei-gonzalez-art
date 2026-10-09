@@ -20,7 +20,7 @@ function CopyButton({ value }) {
   }
 
   return (
-    <button className="copy-button" type="button" onClick={copy} aria-label={`Copiar ${value}`}>
+    <button className="copy-button" type="button" onClick={copy} aria-label={`Copy ${value}`}>
       {copied ? '✓' : <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="11" height="11" rx="1.5"/><path d="M16 8V5H5v11h3"/></svg>}
     </button>
   )
@@ -42,32 +42,36 @@ function ContactItem({ label, value, href, copyValue, icon }) {
 }
 
 export default function Contact() {
-  const [sent, setSent] = useState(false)
-
   const submit = (event) => {
     event.preventDefault()
-    setSent(true)
+    const form = new FormData(event.currentTarget)
+    const name = String(form.get('name') || '').trim()
+    const email = String(form.get('email') || '').trim()
+    const phone = String(form.get('phone') || '').trim()
+    const message = String(form.get('message') || '').trim()
+    const subject = encodeURIComponent(`Website inquiry from ${name}`)
+    const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nPhone: ${phone || 'Not provided'}\n\n${message}`)
+    window.location.href = `mailto:neigonzalez.art@gmail.com?subject=${subject}&body=${body}`
   }
 
   return (
     <section className="page contact-page">
       <div className="contact-form-column">
         <span className="eyebrow">Contact</span>
-        <p className="contact-intro">Si tenés alguna consulta, propuesta o te interesa una obra, escribime. Respondo a la brevedad.</p>
+        <p className="contact-intro">If you have a question, a proposal, or are interested in a piece, write to me. I’ll get back to you as soon as I can.</p>
         <form className="contact-form" onSubmit={submit}>
-          <label>Nombre<input type="text" name="name" required /></label>
-          <label>Email<input type="email" name="email" required /></label>
-          <label>Teléfono <span className="optional">(opcional)</span><input type="tel" name="phone" /></label>
-          <label>Mensaje<textarea name="message" rows="7" required /></label>
-          <button type="submit">Enviar <span>→</span></button>
-          {sent && <p className="form-success">Mensaje enviado exitosamente. Pronto serás contactado.</p>}
+          <label>NAME<input type="text" name="name" autoComplete="name" required /></label>
+          <label>EMAIL<input type="email" name="email" autoComplete="email" required /></label>
+          <label>PHONE <span className="optional">(optional)</span><input type="tel" name="phone" autoComplete="tel" /></label>
+          <label>MESSAGE<textarea name="message" rows="7" required /></label>
+          <button type="submit">SEND <span>→</span></button>
         </form>
       </div>
 
       <aside className="contact-data">
-        <ContactItem label="WhatsApp" value="NeiGonzalez.ar" href="https://wa.me/NeiGonzalez.ar" copyValue="NeiGonzalez.ar" icon="whatsapp" />
-        <ContactItem label="Instagram" value="@neigonzalez.art" href="https://www.instagram.com/neigonzalez.art/" copyValue="@neigonzalez.art" icon="instagram" />
-        <ContactItem label="Email" value="neigonzalez.art@gmail.com" href="mailto:neigonzalez.art@gmail.com" copyValue="neigonzalez.art@gmail.com" icon="email" />
+        <ContactItem label="WHATSAPP" value="NeiGonzalez.ar" href="https://wa.me/NeiGonzalez.ar" copyValue="NeiGonzalez.ar" icon="whatsapp" />
+        <ContactItem label="INSTAGRAM" value="@neigonzalez.art" href="https://www.instagram.com/neigonzalez.art/" copyValue="@neigonzalez.art" icon="instagram" />
+        <ContactItem label="EMAIL" value="neigonzalez.art@gmail.com" href="mailto:neigonzalez.art@gmail.com" copyValue="neigonzalez.art@gmail.com" icon="email" />
       </aside>
 
       <VisualStrip columns={visualColumns} />

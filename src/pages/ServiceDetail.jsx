@@ -25,7 +25,7 @@ export default function ServiceDetail() {
         <h1>{service.title}</h1>
         <span className="service-rule" />
         <p>{service.description}</p>
-        <Link className="service-cta" to="/contact">Consultar <span>→</span></Link>
+        <Link className="service-cta" to="/contact">INQUIRE <span>→</span></Link>
       </div>
 
       <div className="service-detail-gallery">

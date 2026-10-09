@@ -11,6 +11,7 @@ import About from './pages/About'
 import Statement from './pages/Statement'
 import Contact from './pages/Contact'
 import ShopDetail from './pages/ShopDetail'
+import SpanishUnderConstruction from './pages/SpanishUnderConstruction'
 
 export default function App() {
   return <BrowserRouter basename={import.meta.env.BASE_URL.replace(/\/$/, '')}>
@@ -26,6 +27,7 @@ export default function App() {
       <Route path="/about" element={<About />} />
       <Route path="/statement" element={<Statement />} />
       <Route path="/contact" element={<Contact />} />
+      <Route path="/spanish-under-construction" element={<SpanishUnderConstruction />} />
     </Routes></main>
     <Footer />
   </BrowserRouter>
