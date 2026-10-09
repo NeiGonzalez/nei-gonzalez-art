@@ -1,5 +1,5 @@
 import { visualColumns } from '../data/siteContent'
-import { Link } from 'react-router-dom'
+import { Fragment } from 'react'
 
 const biography = [
   "Visual Arts Teacher, Provincial School of Visual Arts of Entre Ríos, Argentina",
@@ -126,14 +126,25 @@ const linkLabels = {
 
 function renderLinkedText(text) {
   const urlPattern = /https?:\/\/[^\s,]+/g
-  return text.split(urlPattern).reduce((parts, precedingText, index, segments) => {
-    if (index === 0) return [precedingText]
-    const match = text.match(urlPattern)?.[index - 1]
-    if (!match) return [...parts, precedingText]
-    const cleanUrl = match.replace(/[.)]+$/, '')
-    const trailing = match.slice(cleanUrl.length)
-    return [...parts, <span key={`link-${index}`}><a className="cv-link" href={cleanUrl} target="_blank" rel="noreferrer">{linkLabels[cleanUrl] || 'Open link'}</a>{trailing}</span>, precedingText]
-  }, [])
+  const parts = []
+  let lastIndex = 0
+  let match
+  while ((match = urlPattern.exec(text)) !== null) {
+    let rawUrl = match[0]
+    let cleanUrl = rawUrl.replace(/[.)]+$/, '')
+    const trailing = rawUrl.slice(cleanUrl.length)
+    parts.push(text.slice(lastIndex, match.index))
+    parts.push(
+      <Fragment key={`link-${match.index}`}>
+        <a className="cv-link" href={cleanUrl} target="_blank" rel="noreferrer">
+          {linkLabels[cleanUrl] || new URL(cleanUrl).hostname.replace(/^www\./, '')}
+        </a>{trailing}
+      </Fragment>
+    )
+    lastIndex = match.index + rawUrl.length
+  }
+  parts.push(text.slice(lastIndex))
+  return parts
 }
 
 export default function About() {
