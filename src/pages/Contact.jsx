@@ -64,7 +64,7 @@ export default function Contact() {
           <label>EMAIL<input type="email" name="email" autoComplete="email" required /></label>
           <label>PHONE <span className="optional">(optional)</span><input type="tel" name="phone" autoComplete="tel" /></label>
           <label>MESSAGE<textarea name="message" rows="7" required /></label>
-          <button type="submit">SEND <span>→</span></button>
+          <button type="submit">SEND</button>
         </form>
       </div>
 

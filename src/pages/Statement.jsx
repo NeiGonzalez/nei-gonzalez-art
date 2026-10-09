@@ -20,10 +20,18 @@ export default function Statement() {
     <section className="page editorial-page statement-page">
       <div className="editorial-copy statement-copy">
         <span className="eyebrow">Statement</span>
-        <h1>THE COEXISTENCE OF OPPOSITES</h1>
-        {firstSection.map((paragraph, index) => <p key={index}>{paragraph}</p>)}
-        <h2>OF EXTERNAL NOISE AND INNER SILENCE</h2>
-        {finalSection.map((paragraph, index) => <p key={index}>{paragraph}</p>)}
+        <h1>The coexistence of opposites</h1>
+        {firstSection.map((paragraph, index) => (
+          <p key={index}>
+            {index === 0 ? <><span className="statement-editorial-phrase">The coexistence of opposites runs through the way I understand life and the way I build my work. I am interested in that which, even when different or antagonistic, can coexist and form part of a single whole.</span>{paragraph.slice("The coexistence of opposites runs through the way I understand life and the way I build my work. I am interested in that which, even when different or antagonistic, can coexist and form part of a single whole.".length)}</> : paragraph}
+          </p>
+        ))}
+        <h2>Of external noise and inner silence</h2>
+        {finalSection.map((paragraph, index) => (
+          <p key={index}>
+            {index === 0 ? <><span className="statement-editorial-phrase">In the midst of external noise, I long for that moment, the one of the encounter with the point of rest, to produce in whoever looks an instant of inner silence and, in that silence, an encounter with oneself, even if only for an instant.</span>{paragraph.slice("In the midst of external noise, I long for that moment, the one of the encounter with the point of rest, to produce in whoever looks an instant of inner silence and, in that silence, an encounter with oneself, even if only for an instant.".length)}</> : index === 2 ? <>{paragraph.slice(0, paragraph.lastIndexOf('If that encounter produces even a small moment of silence, peace or serenity, then for me the work has already found a reason to exist.'))}<strong className="statement-final-sentence">If that encounter produces even a small moment of silence, peace or serenity, then for me the work has already found a reason to exist.</strong></> : paragraph}
+          </p>
+        ))}
       </div>
       <VisualStrip columns={visualColumns} />
     </section>

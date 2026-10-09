@@ -183,16 +183,19 @@ main { min-height: calc(100svh - var(--header-h) - var(--footer-h)); }
   position: relative;
 }
 .works-toolbar-heading { display: contents; }
-.filters { display: flex; align-items: center; gap: 24px; position: relative; z-index: 2; }
-.filter-option { display: inline-flex; align-items: center; gap: 5px; position: relative; }
+.filters { display: flex; align-items: center; gap: 24px; position: relative; z-index: 5; isolation: isolate; }
+.filter-option { display: inline-flex; align-items: center; gap: 5px; position: relative; z-index: 1; flex: 0 0 auto; }
 .filters button {
   position: relative;
-  z-index: 1;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   touch-action: manipulation;
   border: 0;
   border-bottom: 1px solid transparent;
-  background: none;
-  padding: 0 0 5px;
+  background: var(--paper);
+  padding: 5px 3px 7px;
   cursor: pointer;
   font: 400 11px/1 Jost, sans-serif;
   letter-spacing: .04em;
@@ -315,6 +318,10 @@ main { min-height: calc(100svh - var(--header-h) - var(--footer-h)); }
 .cv-activities { margin: 0; padding-left: 20px; list-style: disc; }
 .cv-activities li { margin: 0 0 8px; padding-left: 2px; overflow-wrap: anywhere; }
 .cv-activities li span { overflow-wrap: anywhere; }
+.cv-link { text-decoration: underline; text-underline-offset: 2px; overflow-wrap: anywhere; }
+.cv-link:hover { color: var(--terracotta); }
+.statement-editorial-phrase { font-family: 'Cormorant Garamond', serif; font-size: 1.2em; line-height: 1.35; }
+.statement-final-sentence { font-weight: 700; }
 .visual-strip { width: 270px; overflow: hidden; align-self: start; grid-column: 2; grid-row: 1; }
 .visual-strip-item { height: 205px; overflow: hidden; }
 .visual-strip-item > div {
@@ -338,7 +345,7 @@ main { min-height: calc(100svh - var(--header-h) - var(--footer-h)); }
 @keyframes visualMove { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 @keyframes visualMoveReverse { from { transform: translateX(-50%); } to { transform: translateX(0); } }
 @keyframes visualMoveVerticalReverse { from { transform: translateY(-50%); } to { transform: translateY(0); } }
-.statement-copy h1, .statement-copy h2 { font-weight: 700; }
+.statement-copy h1, .statement-copy h2 { font-weight: 700; text-transform: none; }
 .statement-copy p { max-width: 800px; }
 
 /* Contact */
@@ -377,11 +384,16 @@ main { min-height: calc(100svh - var(--header-h) - var(--footer-h)); }
   min-width: 154px;
   border-radius: 9px;
   cursor: pointer;
-  font: 500 12px/1 Jost, sans-serif;
+  font: 600 14px/1 Jost, sans-serif;
   letter-spacing: .08em;
+  text-align: center;
   text-transform: uppercase;
+  width: 170px;
+  min-height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
-.contact-form button span { display: inline-flex; margin-left: 12px; font: 600 16px/1 Inter, sans-serif; vertical-align: middle; }
 .form-success { margin: 0 !important; color: var(--terracotta); font-size: 13px !important; }
 .contact-data {
   grid-column: 2;
@@ -571,7 +583,9 @@ main { min-height: calc(100svh - var(--header-h) - var(--footer-h)); }
   .eyebrow { font-size: 11px; letter-spacing: .13em; }
 
   .works-toolbar { display: block; margin-bottom: 22px; }
-  .filters { gap: 17px; overflow-x: auto; margin-top: 18px; padding: 0 8px 2px 0; }
+  .filters { gap: 13px; overflow-x: auto; margin-top: 18px; padding: 0 8px 8px 0; touch-action: pan-x; }
+  .filter-option { z-index: 2; }
+  .filters button { padding: 7px 4px 9px; white-space: nowrap; }
   .year-order { width: 13px; height: 15px; margin-left: 3px; }
   .works-grid { grid-template-columns: repeat(2, 1fr); gap: 25px 13px; }
   .work-card-image img { width: 100%; height: auto; max-height: none; }
@@ -600,7 +614,7 @@ main { min-height: calc(100svh - var(--header-h) - var(--footer-h)); }
   .contact-form { width: 100%; max-width: none; }
   .contact-form input, .contact-form textarea { max-width: 100%; }
   .contact-form textarea { resize: vertical; }
-  .contact-form button { min-height: 48px; }
+  .contact-form button { min-height: 48px; width: 170px; }
 
   .work-view { position: relative; inset: auto; min-height: calc(100svh - var(--header-h) - var(--footer-h)); display: flex; flex-direction: column; padding: 10px 18px 28px; overflow: visible; }
   .work-view-close { top: 7px; right: 8px; font-size: 34px; }

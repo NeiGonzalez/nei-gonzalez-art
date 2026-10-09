@@ -1,4 +1,5 @@
 import { visualColumns } from '../data/siteContent'
+import { Link } from 'react-router-dom'
 
 const biography = [
   "Visual Arts Teacher, Provincial School of Visual Arts of Entre Ríos, Argentina",
@@ -110,6 +111,16 @@ const exhibitions = [
   }
 ]
 
+function renderLinkedText(text) {
+  const urlPattern = /(https?:\/\/[^\s,]+)/g
+  return text.split(urlPattern).map((part, index) => {
+    if (!/^https?:\/\//.test(part)) return part
+    const cleanUrl = part.replace(/[.)]+$/, '')
+    const trailing = part.slice(cleanUrl.length)
+    return <span key={index}><a className="cv-link" href={cleanUrl} target="_blank" rel="noreferrer">{cleanUrl}</a>{trailing}</span>
+  })
+}
+
 export default function About() {
   return (
     <section className="page editorial-page">
@@ -123,7 +134,7 @@ export default function About() {
             <section className="cv-year-group" key={entry.year}>
               <h3 className="cv-year">{entry.year}</h3>
               <ul className="cv-activities">
-                {entry.items.map((item, index) => <li key={index}>{item.split('\n').map((line, lineIndex) => <span key={lineIndex}>{lineIndex > 0 && <><br /></>}{line}</span>)}</li>)}
+                {entry.items.map((item, index) => <li key={index}>{item.split('\n').map((line, lineIndex) => <span key={lineIndex}>{lineIndex > 0 && <><br /></>}{renderLinkedText(line)}</span>)}</li>)}
               </ul>
             </section>
           ))}
