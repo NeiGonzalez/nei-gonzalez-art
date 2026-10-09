@@ -111,14 +111,29 @@ const exhibitions = [
   }
 ]
 
+const linkLabels = {
+  'https://www.facebook.com/photo/?fbid=1385234163786016&set=pcb.1385234840452615': 'Facebook',
+  'https://www.eqsnotas.com/cultura/danzas--poesia-y-pintura-tuvieron-su-jornada-en-trevelin-con-los-juegos-culturales-para-personas-mayores_a6a6e10338bb052882ba61c3b': 'EQS Notas',
+  'https://www.facebook.com/100064887961973/posts/1555720753267509/': 'Facebook',
+  'https://universidadeshoy.com.ar/nota/76567/universidad-siglo-21-anuncio-los-ganadores-de-la-nueva-edicion-del-concurso-nacional-de-escultura-de-gran-escala/': 'Universidades Hoy',
+  'https://www.facebook.com/watch/?v=667761657918897': 'Facebook Watch',
+  'https://www.argentina.gob.ar/noticias/dos-muestras-plasticas-con-artistas-cordobeses-en-la-estancia-de-jesus-maria-y-la-posta-de': 'Argentina.gob.ar',
+  'https://www.unoentrerios.com.ar/escenario/presentan-apariencias-la-muestra-pinturas-y-grabados-n1455811.html': 'UNO Entre Ríos',
+  'https://youtu.be/5bHvAYFloJg': 'YouTube',
+  'http://jaquealarte.com/2015/04/06/la-muestra-del-mes-experiencia-infinita/': 'Jaque al Arte',
+  'http://www.galeriacerrito.com/artista.php?lang=es&id=100': 'Galería de Arte Cerrito'
+}
+
 function renderLinkedText(text) {
-  const urlPattern = /(https?:\/\/[^\s,]+)/g
-  return text.split(urlPattern).map((part, index) => {
-    if (!/^https?:\/\//.test(part)) return part
-    const cleanUrl = part.replace(/[.)]+$/, '')
-    const trailing = part.slice(cleanUrl.length)
-    return <span key={index}><a className="cv-link" href={cleanUrl} target="_blank" rel="noreferrer">{cleanUrl}</a>{trailing}</span>
-  })
+  const urlPattern = /https?:\/\/[^\s,]+/g
+  return text.split(urlPattern).reduce((parts, precedingText, index, segments) => {
+    if (index === 0) return [precedingText]
+    const match = text.match(urlPattern)?.[index - 1]
+    if (!match) return [...parts, precedingText]
+    const cleanUrl = match.replace(/[.)]+$/, '')
+    const trailing = match.slice(cleanUrl.length)
+    return [...parts, <span key={`link-${index}`}><a className="cv-link" href={cleanUrl} target="_blank" rel="noreferrer">{linkLabels[cleanUrl] || 'Open link'}</a>{trailing}</span>, precedingText]
+  }, [])
 }
 
 export default function About() {
