@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { visualColumns } from '../data/siteContent'
 import { VisualStrip } from './About'
 
@@ -42,6 +42,10 @@ function ContactItem({ label, value, href, copyValue, icon }) {
 }
 
 export default function Contact() {
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
+  }, [])
+
   const submit = (event) => {
     event.preventDefault()
     const form = new FormData(event.currentTarget)

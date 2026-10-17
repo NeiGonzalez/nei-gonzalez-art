@@ -24,13 +24,13 @@ export default function ServiceDetail() {
         <span className="eyebrow">Services</span>
         <h1>{service.title}</h1>
         <span className="service-rule" />
-        <p>{service.description}</p>
-        <Link className="service-cta" to="/contact">INQUIRE <span>→</span></Link>
+        <div className="service-detail-text">{(service.paragraphs || [service.description]).filter(Boolean).map((paragraph, paragraphIndex) => <p key={`${service.id}-paragraph-${paragraphIndex}`}>{paragraph}</p>)}</div>
+        <Link className="service-cta" to="/contact">ENQUIRE <span>→</span></Link>
       </div>
 
       <div className="service-detail-gallery">
         <div className="service-detail-image">
-          <img src={serviceImages[imageIndex]} alt="" loading="eager" fetchPriority="high" decoding="async" />
+          <img src={serviceImages[imageIndex]} alt={`${service.title} — image ${imageIndex + 1}`} loading="eager" fetchPriority="high" decoding="async" />
           {serviceImages.length > 1 && <>
             {imageIndex > 0 && <button className="service-image-arrow service-image-prev" type="button" onClick={() => setImageIndex((current) => current - 1)} aria-label="Previous image">‹</button>}
             {imageIndex < serviceImages.length - 1 && <button className="service-image-arrow service-image-next" type="button" onClick={() => setImageIndex((current) => current + 1)} aria-label="Next image">›</button>}
