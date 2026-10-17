@@ -83,7 +83,7 @@ export const services = [
     shortDescription: 'Guidance and reflection to strengthen the personal search of emerging artists.',
     paragraphs: [
       'Spaces for guidance and reflection aimed at strengthening the personal search of artists who are beginning to develop their practice. Through dialogue about their works and working processes, the ideas, decisions and resources involved in artistic production are explored.',
-      'The clinics also allow for deeper work on technical and conceptual aspects, identification of specific needs, and engagement with theoretical tools that help to understand and enrich one's own practice. Each session is built around the concerns and challenges that each artist's production presents, which helps develop a more conscious outlook on their work and its possibilities.',
+      "The clinics also allow for deeper work on technical and conceptual aspects, identification of specific needs, and engagement with theoretical tools that help to understand and enrich one's own practice. Each session is built around the concerns and challenges that each artist's production presents, which helps develop a more conscious outlook on their work and its possibilities.",
       'To enquire about a clinic, you can write to me through the Enquire button.'
     ],
   },
