@@ -43,27 +43,21 @@ function ContactItem({ label, value, href, copyValue, icon }) {
 
 export default function Contact() {
   useEffect(() => {
-    window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
+    if (window.location.hash === '#contact-form') {
+      requestAnimationFrame(() => document.getElementById('contact-form')?.scrollIntoView({ block: 'start', behavior: 'auto' }))
+    } else {
+      window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
+    }
   }, [])
 
-  const submit = (event) => {
-    event.preventDefault()
-    const form = new FormData(event.currentTarget)
-    const name = String(form.get('name') || '').trim()
-    const email = String(form.get('email') || '').trim()
-    const phone = String(form.get('phone') || '').trim()
-    const message = String(form.get('message') || '').trim()
-    const subject = encodeURIComponent(`Website inquiry from ${name}`)
-    const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nPhone: ${phone || 'Not provided'}\n\n${message}`)
-    window.location.href = `mailto:neigonzalez.art@gmail.com?subject=${subject}&body=${body}`
-  }
+
 
   return (
     <section className="page contact-page">
       <div className="contact-form-column">
         <span className="eyebrow">Contact</span>
         <p className="contact-intro">If you have a question, a proposal, or are interested in a piece, write to me. I’ll get back to you as soon as I can.</p>
-        <form className="contact-form" onSubmit={submit}>
+        <form id="contact-form" className="contact-form" action="https://formspree.io/f/xdeajpqo" method="POST">
           <label>NAME<input type="text" name="name" autoComplete="name" required /></label>
           <label>EMAIL<input type="email" name="email" autoComplete="email" required /></label>
           <label className="phone-field"><span className="phone-label">PHONE <span className="optional">(optional)</span></span><input type="tel" name="phone" autoComplete="tel" /></label>

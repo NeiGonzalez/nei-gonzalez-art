@@ -4,7 +4,8 @@ export const heroImages = [
   { id: 'UNDER_CONSTRUCTION', type: 'notice', group: 'notice', alt: 'Website under construction notice' },
   { id: 'HERO_01', group: 'works', src: asset('assets/home/hero/HERO_01.webp'), alt: 'Colorful artwork detail' },
   { id: 'HERO_02', group: 'exhibitions', src: asset('assets/home/hero/HERO_02.webp'), alt: 'Exhibition view' },
-  { id: 'HERO_03', group: 'works', src: asset('assets/home/hero/HERO_03.webp'), alt: 'Artwork detail' },
+  { id: '2026-CPV-4', group: 'works', src: asset('assets/works/2026-CPV-4.webp'), alt: 'CORTEZA PIEL VIDA, abstract fabric painting with beige and white acrylic, metallic watercolours and black graphic marks' },
+  { id: '2026-UDU-3', group: 'works', src: asset('assets/works/2026-UDU-3.webp'), alt: 'Detail of UNIVERSO DE UNIVERSOS, a drawing featuring a circular arrangement of decorated stones' },
   { id: 'HERO_04', group: 'exhibitions', src: asset('assets/home/hero/HERO_04.webp'), alt: 'Exhibition view' },
   { id: 'HERO_05', group: 'works', src: asset('assets/home/hero/HERO_05.webp'), alt: 'Artwork on display' },
   { id: 'HERO_06', group: 'exhibitions', src: asset('assets/home/hero/HERO_06.webp'), alt: 'Exhibition view' },
@@ -35,9 +36,10 @@ export const visualColumns = {
 export const services = [
   {
     id: 'commissions',
-    title: 'Commissioned works',
+    title: 'Commissioned Artwork',
     image: asset('assets/services/commissioned-artwork.webp'),
     images: [asset('assets/services/commissioned-artwork.webp')],
+    imageCaptions: ['Acacios Negro IV — Artwork installed in a private collector’s bedroom.'],
     shortDescription: 'Original artworks developed in dialogue with the person commissioning them and the space.',
     paragraphs: [
       'Commissioned works are intended for private spaces in a home or for small work environments, and one or more works can be commissioned.',
@@ -50,9 +52,10 @@ export const services = [
   },
   {
     id: 'spaces',
-    title: 'Art for spaces',
+    title: 'Art Projects for Spaces',
     image: asset('assets/services/spaces-before-after.webp'),
-    images: [asset('assets/services/spaces-before-after.webp'), asset('assets/services/spaces-project-02.webp'), asset('assets/services/spaces-project-03.webp')],
+    images: [asset('assets/services/spaces-01.webp'), asset('assets/services/spaces-project-02.webp'), asset('assets/services/spaces-project-03.webp'), asset('assets/services/spaces-04.webp')],
+    imageCaptions: ['OKRA Project — Photomontage of a physical model on an actual wall.', 'Artwork Photomontage — Universidad Siglo 21 Campus. Photomontage of a physical model on an image provided by Universidad Siglo 21.', 'Premio Azcuy Project — Photomontage of a physical model on a photograph provided by the organizer.', 'Office Art Project — Original ink and watercolor artworks presented in an AI-generated photomontage.'],
     shortDescription: 'Artistic proposals for public, professional and shared spaces.',
     paragraphs: [
       'Development of artistic proposals for public and professional spaces, such as hotels, banks, offices, corporate buildings, private hospitals, medical practices or professional offices, conference rooms and other work and gathering spaces.',
@@ -66,8 +69,9 @@ export const services = [
   {
     id: 'workshops',
     title: 'Workshops',
-    image: asset('assets/services/workshops.webp'),
-    images: [asset('assets/services/workshops.webp')],
+    image: asset('assets/services/workshop-main.webp'),
+    images: [asset('assets/services/workshop-main.webp')],
+    workshopPromo: asset('assets/services/workshop-exhibitions.webp'),
     shortDescription: 'Theoretical and practical activities exploring concepts, techniques and materials.',
     paragraphs: [
       'Theoretical and practical activities on diverse concepts, techniques and materials, designed for the training and skill development of both artists and other members of the community. These sessions invite participants to get to know new resources, explore ideas and discover different possibilities for creation and expression, in a space for experimentation and exchange.',
@@ -77,13 +81,13 @@ export const services = [
   },
   {
     id: 'clinic',
-    title: 'Art clinics for emerging artists',
+    title: 'Art Mentoring for Emerging Artists',
     image: asset('assets/services/clinics.webp'),
     images: [asset('assets/services/clinics.webp')],
     shortDescription: 'Guidance and reflection to strengthen the personal search of emerging artists.',
     paragraphs: [
       'Spaces for guidance and reflection aimed at strengthening the personal search of artists who are beginning to develop their practice. Through dialogue about their works and working processes, the ideas, decisions and resources involved in artistic production are explored.',
-      "The clinics also allow for deeper work on technical and conceptual aspects, identification of specific needs, and engagement with theoretical tools that help to understand and enrich one's own practice. Each session is built around the concerns and challenges that each artist's production presents, which helps develop a more conscious outlook on their work and its possibilities.",
+      'The clinics also allow for deeper work on technical and conceptual aspects, identification of specific needs, and engagement with theoretical tools that help to understand and enrich one\'s own practice. Each session is built around the concerns and challenges that each artist\'s production presents, which helps develop a more conscious outlook on their work and its possibilities.',
       'To enquire about a clinic, you can write to me through the Enquire button.'
     ],
   },

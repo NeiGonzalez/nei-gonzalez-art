@@ -701,3 +701,35 @@ main { min-height: calc(100svh - var(--header-h) - var(--footer-h)); }
   .contact-icon svg { width: 20px; height: 20px; }
   .contact-item a { display: inline-block; max-width: 100%; overflow-wrap: anywhere; }
 }
+
+
+/* V20: first real works batch and service refinements */
+.service-detail-text p { text-align: justify; }
+.service-image-caption { grid-column: 1 / -1; margin: 0; color: #777; font: italic 400 5pt/1.35 Inter, sans-serif; text-align: left; }
+.workshop-promo { grid-column: 1 / -1; display: flex; align-items: flex-start; gap: 14px; margin-top: 12px; }
+.workshop-promo img { display: block; width: min(180px, 35%); height: auto; object-fit: contain; }
+.workshop-promo h2 { margin: 0; font: 500 12px/1.35 Jost, sans-serif; letter-spacing: .06em; }
+.service-detail-gallery { align-content: start; }
+.service-detail-image { min-width: 0; }
+.service-detail-page:has(.spaces-detail-text) { grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr); }
+.service-detail-page:has(.spaces-detail-text) .service-detail-copy { display: contents; }
+.service-detail-page:has(.spaces-detail-text) .service-detail-copy > .eyebrow,
+.service-detail-page:has(.spaces-detail-text) .service-detail-copy > h1,
+.service-detail-page:has(.spaces-detail-text) .service-detail-copy > .service-rule { grid-column: 1; }
+.service-detail-page:has(.spaces-detail-text) .service-detail-gallery { grid-column: 2; grid-row: 1 / span 4; }
+.service-detail-page:has(.spaces-detail-text) .spaces-detail-text,
+.service-detail-page:has(.spaces-detail-text) .service-cta { grid-column: 1 / -1; max-width: none; }
+.service-detail-page:has(.spaces-detail-text) .service-detail-text p { max-width: none; }
+.service-nav { top: min(78vh, 650px); }
+@media (max-width: 760px) {
+  .service-detail-page:has(.spaces-detail-text) { display: flex; }
+  .service-detail-page:has(.spaces-detail-text) .service-detail-copy { display: contents; }
+  .service-detail-page:has(.spaces-detail-text) .service-detail-gallery { order: 1; }
+  .service-detail-page:has(.spaces-detail-text) .service-detail-copy > .eyebrow,
+  .service-detail-page:has(.spaces-detail-text) .service-detail-copy > h1 { order: 0; }
+  .service-detail-page:has(.spaces-detail-text) .spaces-detail-text { order: 2; }
+  .service-detail-page:has(.spaces-detail-text) .service-cta { order: 3; }
+  .service-image-caption { font-size: 5pt; }
+  .workshop-promo img { width: 34%; max-width: 150px; }
+  .service-nav { top: 40vh; }
+}

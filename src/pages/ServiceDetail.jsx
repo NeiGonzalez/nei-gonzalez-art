@@ -24,8 +24,8 @@ export default function ServiceDetail() {
         <span className="eyebrow">Services</span>
         <h1>{service.title}</h1>
         <span className="service-rule" />
-        <div className="service-detail-text">{(service.paragraphs || [service.description]).filter(Boolean).map((paragraph, paragraphIndex) => <p key={`${service.id}-paragraph-${paragraphIndex}`}>{paragraph}</p>)}</div>
-        <Link className="service-cta" to="/contact">ENQUIRE <span>→</span></Link>
+        <div className={`service-detail-text ${service.id === 'spaces' ? 'spaces-detail-text' : ''}`}>{(service.paragraphs || [service.description]).filter(Boolean).map((paragraph, paragraphIndex) => <p key={`${service.id}-paragraph-${paragraphIndex}`}>{paragraph}</p>)}</div>
+        <Link className="service-cta" to="/contact#contact-form">INQUIRE <span>→</span></Link>
       </div>
 
       <div className="service-detail-gallery">
@@ -37,6 +37,8 @@ export default function ServiceDetail() {
             <div className="service-image-dots">{serviceImages.map((image, imageNumber) => <button key={`${image}-${imageNumber}`} type="button" className={imageNumber === imageIndex ? 'is-active' : ''} onClick={() => setImageIndex(imageNumber)} aria-label={`Image ${imageNumber + 1}`} />)}</div>
           </>}
         </div>
+        {service.imageCaptions && <p className="service-image-caption">{service.imageCaptions[imageIndex]}</p>}
+        {service.workshopPromo && <div className="workshop-promo"><img src={service.workshopPromo} alt="Visual arts exhibition setup workshop"/><div><h2>VISUAL ART EXHIBITIONS SETUP WORKSHOP</h2></div></div>}
         {serviceImages.length > 1 && <div className="service-thumb-rail">{serviceImages.map((image, imageNumber) => <button key={`${image}-thumb`} type="button" className={imageNumber === imageIndex ? 'is-active' : ''} onClick={() => setImageIndex(imageNumber)}><img src={image} alt="" /></button>)}</div>}
       </div>
 
