@@ -29,17 +29,34 @@ export default function ServiceDetail() {
       </div>
 
       <div className="service-detail-gallery">
-        <div className="service-detail-image">
-          <img src={serviceImages[imageIndex]} alt={`${service.title} — image ${imageIndex + 1}`} loading="eager" fetchPriority="high" decoding="async" />
-          {serviceImages.length > 1 && <>
-            {imageIndex > 0 && <button className="service-image-arrow service-image-prev" type="button" onClick={() => setImageIndex((current) => current - 1)} aria-label="Previous image">‹</button>}
-            {imageIndex < serviceImages.length - 1 && <button className="service-image-arrow service-image-next" type="button" onClick={() => setImageIndex((current) => current + 1)} aria-label="Next image">›</button>}
-            <div className="service-image-dots">{serviceImages.map((image, imageNumber) => <button key={`${image}-${imageNumber}`} type="button" className={imageNumber === imageIndex ? 'is-active' : ''} onClick={() => setImageIndex(imageNumber)} aria-label={`Image ${imageNumber + 1}`} />)}</div>
-          </>}
-        </div>
-        {service.imageCaptions && <p className="service-image-caption">{service.imageCaptions[imageIndex]}</p>}
-        {service.workshopPromo && <div className="workshop-promo"><img src={service.workshopPromo} alt="Visual arts exhibition setup workshop"/><div><h2>VISUAL ART EXHIBITIONS SETUP WORKSHOP</h2></div></div>}
-        {serviceImages.length > 1 && <div className="service-thumb-rail">{serviceImages.map((image, imageNumber) => <button key={`${image}-thumb`} type="button" className={imageNumber === imageIndex ? 'is-active' : ''} onClick={() => setImageIndex(imageNumber)}><img src={image} alt="" /></button>)}</div>}
+        {service.workshopCourses ? (
+          <div className="workshop-course-list">
+            {service.workshopCourses.map((course) => (
+              <article className="workshop-course" key={course.id}>
+                <div className="workshop-course-copy">
+                  <h2>{course.title}</h2>
+                  {course.description.map((paragraph, paragraphIndex) => <p key={`${course.id}-description-${paragraphIndex}`}>{paragraph}</p>)}
+                  <p className="workshop-contact-copy">{course.contactText}</p>
+                  <Link className="service-cta workshop-course-cta" to="/contact#contact-form">INQUIRE <span>→</span></Link>
+                </div>
+                <img src={course.image} alt={course.title} loading="eager" decoding="async" />
+              </article>
+            ))}
+          </div>
+        ) : (
+          <>
+            <div className="service-detail-image">
+              <img src={serviceImages[imageIndex]} alt={`${service.title} — image ${imageIndex + 1}`} loading="eager" fetchPriority="high" decoding="async" />
+              {serviceImages.length > 1 && <>
+                {imageIndex > 0 && <button className="service-image-arrow service-image-prev" type="button" onClick={() => setImageIndex((current) => current - 1)} aria-label="Previous image">‹</button>}
+                {imageIndex < serviceImages.length - 1 && <button className="service-image-arrow service-image-next" type="button" onClick={() => setImageIndex((current) => current + 1)} aria-label="Next image">›</button>}
+                <div className="service-image-dots">{serviceImages.map((image, imageNumber) => <button key={`${image}-${imageNumber}`} type="button" className={imageNumber === imageIndex ? 'is-active' : ''} onClick={() => setImageIndex(imageNumber)} aria-label={`Image ${imageNumber + 1}`} />)}</div>
+              </>}
+            </div>
+            {service.imageCaptions && <p className="service-image-caption">{service.imageCaptions[imageIndex]}</p>}
+            {serviceImages.length > 1 && <div className="service-thumb-rail">{serviceImages.map((image, imageNumber) => <button key={`${image}-thumb`} type="button" className={imageNumber === imageIndex ? 'is-active' : ''} onClick={() => setImageIndex(imageNumber)}><img src={image} alt="" /></button>)}</div>}
+          </>
+        )}
       </div>
 
       {next ? (

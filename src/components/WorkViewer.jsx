@@ -54,8 +54,9 @@ export default function WorkViewer({ mode = 'works' }) {
         {isShop && work.status === STATUS.FOR_SALE && (
           <div className="commercial-info">
             {work.priceUSD && <p className="shop-detail-price">USD {work.priceUSD}</p>}
-            {work.commercialInfo && <p>{work.commercialInfo}</p>}
-            <p>Original artwork. Contact me about packaging, shipping and delivery options.</p>
+            {(work.shopSalesText ?? work.commercialInfo) && <p>{work.shopSalesText ?? work.commercialInfo}</p>}
+            <p>The listed price is for the original artwork at the artist’s studio. Additional charges for packing, shipping, insurance, installation, or on-site commissions may apply, depending on the artwork and destination. Please contact me for details.</p>
+            <p>If you’re interested in this artwork, click the <strong>Inquire</strong> button for more information.</p>
             <div className="sale-links">
               {work.marketArgentina && <a href={work.marketArgentina} target="_blank" rel="noreferrer">Mercado Libre</a>}
               {work.marketInternational && <a href={work.marketInternational} target="_blank" rel="noreferrer">Artsy</a>}
@@ -72,10 +73,10 @@ export default function WorkViewer({ mode = 'works' }) {
           <div className="work-image-frame">
             <img src={detail.src} alt={detail.alt} loading="eager" fetchPriority="high" decoding="async" />
             {work.images.length > 1 && safeDetailIndex > 0 && (
-              <button className="detail-arrow detail-prev" type="button" onClick={() => setDetailIndex((current) => current - 1)} aria-label="Previous detail">‹</button>
+              <button className="detail-arrow detail-prev" type="button" onClick={() => setDetailIndex((current) => current - 1)} aria-label="Previous detail"><img src={`${import.meta.env.BASE_URL}images/carousel_slider.png`} alt="" aria-hidden="true" /></button>
             )}
             {work.images.length > 1 && safeDetailIndex < work.images.length - 1 && (
-              <button className="detail-arrow detail-next" type="button" onClick={() => setDetailIndex((current) => current + 1)} aria-label="Next detail">›</button>
+              <button className="detail-arrow detail-next" type="button" onClick={() => setDetailIndex((current) => current + 1)} aria-label="Next detail"><img src={`${import.meta.env.BASE_URL}images/carousel_slider.png`} alt="" aria-hidden="true" /></button>
             )}
             {work.images.length > 1 && (
               <div className="detail-dots" aria-label="Position within work">

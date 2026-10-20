@@ -18,6 +18,7 @@ const finalSection = [
 export default function Statement() {
   return (
     <section className="page editorial-page statement-page">
+      <VisualStrip columns={visualColumns} />
       <div className="editorial-copy statement-copy">
         <span className="eyebrow">Statement</span>
         <h1>The coexistence of opposites</h1>
@@ -31,7 +32,6 @@ export default function Statement() {
           </p>
         ))}
       </div>
-      <VisualStrip columns={visualColumns} />
     </section>
   )
 }

@@ -70,6 +70,7 @@ function LinkedItem({ item }) {
 export default function About() {
   return (
     <section className="page editorial-page about-page">
+      <VisualStrip columns={visualColumns} />
       <div className="editorial-copy">
         <span className="eyebrow">About</span>
         <h1 className="about-name">Nei González</h1>
@@ -83,7 +84,6 @@ export default function About() {
           </section>
         ))}
       </div>
-      <VisualStrip columns={visualColumns} />
     </section>
   )
 }

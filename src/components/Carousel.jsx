@@ -52,7 +52,7 @@ export default function Carousel({ images }) {
             <p>El sitio web está en construcción. Las obras que se muestran son originales de la artista y se presentan aquí de manera provisional, a modo de prueba, mientras se desarrolla el contenido definitivo de la web.</p>
           </div>
         </div>
-      ) : <img className="hero-image" src={current.src} alt={current.alt || ''} fetchPriority="high" decoding="async" />)}
+      ) : <img className={`hero-image group-${current.group || 'default'}`} src={current.src} alt={current.alt || ''} fetchPriority="high" decoding="async" />)}
       {orderedImages.length > 1 && <>
         <button className="hero-arrow hero-arrow-left" onClick={previous} aria-label="Previous image">‹</button>
         <button className="hero-arrow hero-arrow-right" onClick={next} aria-label="Next image">›</button>

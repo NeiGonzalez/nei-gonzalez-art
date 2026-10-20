@@ -47,7 +47,7 @@ export const services = [
       'The process begins with a conversation, in person or by video as circumstances allow, and with an understanding of the space, either through a visit or through photographs and measurements. With that information I present a proposal for the work. Once it is agreed, I make the work and coordinate its delivery, which can be within Argentina or abroad.',
       'Each work is delivered ready to hang, with its certificate of authenticity, a descriptive document covering conceptual and technical aspects, and care instructions. It can be delivered framed, according to what is requested.',
       'Timelines, price, payment method and delivery conditions are set for each work, according to its size, its technique and its final destination, as agreed with the client.',
-      'To start a commission, you can write to me through the Enquire button, with a description of what you are looking for and a photo of the space.'
+      'To start a commission, you can write to me through the Inquire button, with a description of what you are looking for and a photo of the space.'
     ],
   },
   {
@@ -63,7 +63,7 @@ export const services = [
       'I am interested in art becoming part of these environments on a sensory level, with attention to their atmosphere, their particularities and the experiences of the people who pass through them, as well as to what is hoped the work will contribute experientially for those who live with it.',
       'Each project starts from a conversation with the people behind it and from an understanding of the space. With that information I present a proposal that defines the number of works, the formats, the suggested location and the basic lighting required. Timelines, price, payment method and delivery conditions are set for each project, as agreed with the client.',
       'The works are delivered with their certificate of authenticity, a descriptive document covering conceptual and technical aspects, and care instructions.',
-      'To enquire about a project, you can write to me through the Enquire button.'
+      'To inquire about a project, you can write to me through the Inquire button.'
     ],
   },
   {
@@ -71,12 +71,32 @@ export const services = [
     title: 'Workshops',
     image: asset('assets/services/workshop-main.webp'),
     images: [asset('assets/services/workshop-main.webp')],
-    workshopPromo: asset('assets/services/workshop-exhibitions.webp'),
+    workshopCourses: [
+      {
+        id: 'creativity',
+        title: 'Visual Arts and Personal Creativity Workshop',
+        image: asset('assets/services/workshop-main.webp'),
+        description: ['In-person visual arts workshop for young people and adults, with practical activities and applied theoretical concepts, techniques and materials. Designed for the training and skill development of both community members and artists, the sessions invite participants to discover new resources, explore ideas and find different possibilities for creation and expression, in a space for experimentation and exchange. Trevelin, Chubut, Argentina. Open all year round.'],
+        contactText: 'To request information about this workshop, contact me through the Inquire button.'
+      },
+      {
+        id: 'exhibitions',
+        title: 'Art Exhibition Management and Installation Workshop',
+        image: asset('assets/services/workshop-exhibitions.webp'),
+        description: [
+          'Designed for artists, staff of museums, cultural centers and exhibition spaces, and teachers at all levels.',
+          'The organization of an exhibition requires considering multiple aspects that influence how the works are presented and enhanced, as well as the experience of those who visit the show. The selection and arrangement of the works, the visitor route, lighting, signage, the target audience, the exhibition narrative and communication are some of the matters involved in its development.',
+          'This workshop offers a theoretical and practical introduction to the main aspects of exhibition management and installation, from initial planning, through execution and evaluation of the show, to dismantling.',
+          'It proposes criteria to identify which elements are essential, which decisions are best made in advance and which resources can enrich the proposal, along with organizational and planning tools applicable to each project.',
+          'The knowledge covered can also be applied to exhibitions of objects and to productions from other disciplines that need to be displayed.',
+          'Coming soon.'
+        ],
+        contactText: 'To request information about upcoming dates of this workshop, contact me through the Inquire button.'
+      }
+    ],
     shortDescription: 'Theoretical and practical activities exploring concepts, techniques and materials.',
     paragraphs: [
-      'Theoretical and practical activities on diverse concepts, techniques and materials, designed for the training and skill development of both artists and other members of the community. These sessions invite participants to get to know new resources, explore ideas and discover different possibilities for creation and expression, in a space for experimentation and exchange.',
-      'Visual arts exhibition setup workshop. Aimed at artists, museums, exhibition spaces and teachers at all levels, it covers the aspects to consider when setting up an exhibition: the arrangement of the works, lighting, signage, the visitor route, framing, the presentation of the works and publicity. Coming soon.',
-      'To receive information about upcoming dates, you can write to me through the Enquire button.'
+      'To receive information about upcoming dates, you can write to me through the Inquire button.'
     ],
   },
   {
@@ -88,7 +108,7 @@ export const services = [
     paragraphs: [
       'Spaces for guidance and reflection aimed at strengthening the personal search of artists who are beginning to develop their practice. Through dialogue about their works and working processes, the ideas, decisions and resources involved in artistic production are explored.',
       'The clinics also allow for deeper work on technical and conceptual aspects, identification of specific needs, and engagement with theoretical tools that help to understand and enrich one\'s own practice. Each session is built around the concerns and challenges that each artist\'s production presents, which helps develop a more conscious outlook on their work and its possibilities.',
-      'To enquire about a clinic, you can write to me through the Enquire button.'
+      'To inquire about a clinic, you can write to me through the Inquire button.'
     ],
   },
 ]

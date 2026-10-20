@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { visualColumns } from '../data/siteContent'
 import { VisualStrip } from './About'
 
@@ -42,6 +42,10 @@ function ContactItem({ label, value, href, copyValue, icon }) {
 }
 
 export default function Contact() {
+  const formRef = useRef(null)
+  const closeButtonRef = useRef(null)
+  const [submitState, setSubmitState] = useState('idle')
+
   useEffect(() => {
     if (window.location.hash === '#contact-form') {
       requestAnimationFrame(() => document.getElementById('contact-form')?.scrollIntoView({ block: 'start', behavior: 'auto' }))
@@ -50,6 +54,39 @@ export default function Contact() {
     }
   }, [])
 
+  useEffect(() => {
+    if (submitState !== 'success') return undefined
+    closeButtonRef.current?.focus()
+    const closeOnEscape = (event) => {
+      if (event.key === 'Escape') closeConfirmation()
+    }
+    window.addEventListener('keydown', closeOnEscape)
+    return () => window.removeEventListener('keydown', closeOnEscape)
+  }, [submitState])
+
+  const closeConfirmation = () => {
+    formRef.current?.reset()
+    setSubmitState('idle')
+  }
+
+  const handleSubmit = async (event) => {
+    event.preventDefault()
+    const form = event.currentTarget
+    setSubmitState('sending')
+
+    try {
+      const response = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { Accept: 'application/json' },
+      })
+      if (!response.ok) throw new Error('Form submission failed')
+      setSubmitState('success')
+    } catch {
+      setSubmitState('error')
+    }
+  }
+
 
 
   return (
@@ -57,13 +94,14 @@ export default function Contact() {
       <div className="contact-form-column">
         <span className="eyebrow">Contact</span>
         <p className="contact-intro">If you have a question, a proposal, or are interested in a piece, write to me. I’ll get back to you as soon as I can.</p>
-        <form id="contact-form" className="contact-form" action="https://formspree.io/f/xdeajpqo" method="POST">
+        <form ref={formRef} id="contact-form" className="contact-form" action="https://formspree.io/f/xdeajpqo" method="POST" onSubmit={handleSubmit} aria-busy={submitState === 'sending'}>
           <label>NAME<input type="text" name="name" autoComplete="name" required /></label>
           <label>EMAIL<input type="email" name="email" autoComplete="email" required /></label>
           <label className="phone-field"><span className="phone-label">PHONE <span className="optional">(optional)</span></span><input type="tel" name="phone" autoComplete="tel" /></label>
           <label>MESSAGE<textarea name="message" rows="7" required /></label>
-          <button type="submit">SEND</button>
+          <button type="submit" disabled={submitState === 'sending'}>{submitState === 'sending' ? 'SENDING…' : 'SEND'}</button>
         </form>
+        {submitState === 'error' && <p className="contact-form-error" role="alert">Your message could not be sent. Please try again or contact me by email.</p>}
       </div>
 
       <aside className="contact-data">
@@ -73,6 +111,16 @@ export default function Contact() {
       </aside>
 
       <VisualStrip columns={visualColumns} />
+      {submitState === 'success' && (
+        <div className="contact-confirmation-backdrop" onMouseDown={(event) => { if (event.target === event.currentTarget) closeConfirmation() }}>
+          <section className="contact-confirmation" role="dialog" aria-modal="true" aria-labelledby="contact-confirmation-title">
+            <button ref={closeButtonRef} className="contact-confirmation-close" type="button" onClick={closeConfirmation} aria-label="Close confirmation">×</button>
+            <img src={`${import.meta.env.BASE_URL}assets/logo-nei-gonzalez-art.png`} alt="Nei González art" />
+            <h2 id="contact-confirmation-title">Message sent</h2>
+            <p>Thank you for your message. I’ll get back to you as soon as I can.</p>
+          </section>
+        </div>
+      )}
     </section>
   )
 }
