@@ -962,6 +962,7 @@ main { min-height: calc(100svh - var(--header-h) - var(--footer-h)); }
   width: 34px;
   height: 42px;
   color: #fff;
+  font-weight: 600;
   font-size: 36px;
   mix-blend-mode: difference;
 }
@@ -974,6 +975,7 @@ main { min-height: calc(100svh - var(--header-h) - var(--footer-h)); }
   z-index: 120;
   width: 34px;
   height: 42px;
+  font-weight: 600;
   font-size: 36px;
 }
 .work-nav-prev { left: 4px; right: auto; }
