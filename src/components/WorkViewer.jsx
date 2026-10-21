@@ -70,20 +70,22 @@ export default function WorkViewer({ mode = 'works' }) {
 
       <div className="work-view-stage">
         <div className="work-image-wrap">
-          <div className="work-image-frame">
-            <img src={detail.src} alt={detail.alt} loading="eager" fetchPriority="high" decoding="async" />
+          <div className="work-image-stage">
             {work.images.length > 1 && safeDetailIndex > 0 && (
               <button className="detail-arrow detail-prev" type="button" onClick={() => setDetailIndex((current) => current - 1)} aria-label="Previous detail"><img src={`${import.meta.env.BASE_URL}images/carousel_slider.png`} alt="" aria-hidden="true" /></button>
             )}
-            {work.images.length > 1 && safeDetailIndex < work.images.length - 1 && (
-              <button className="detail-arrow detail-next" type="button" onClick={() => setDetailIndex((current) => current + 1)} aria-label="Next detail"><img src={`${import.meta.env.BASE_URL}images/carousel_slider.png`} alt="" aria-hidden="true" /></button>
-            )}
-            {work.images.length > 1 && (
+            <div className="work-image-frame">
+              <img src={detail.src} alt={detail.alt} loading="eager" fetchPriority="high" decoding="async" />
+              {work.images.length > 1 && (
               <div className="detail-dots" aria-label="Position within work">
                 {work.images.map((image, imageIndex) => (
                   <button key={image.id} type="button" className={imageIndex === safeDetailIndex ? 'is-active' : ''} onClick={() => setDetailIndex(imageIndex)} aria-label={`Detail ${imageIndex + 1}`} />
                 ))}
               </div>
+              )}
+            </div>
+            {work.images.length > 1 && safeDetailIndex < work.images.length - 1 && (
+              <button className="detail-arrow detail-next" type="button" onClick={() => setDetailIndex((current) => current + 1)} aria-label="Next detail"><img src={`${import.meta.env.BASE_URL}images/carousel_slider.png`} alt="" aria-hidden="true" /></button>
             )}
           </div>
         </div>

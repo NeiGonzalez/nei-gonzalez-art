@@ -55,7 +55,7 @@ export const services = [
     title: 'Art Projects for Spaces',
     image: asset('assets/services/spaces-before-after.webp'),
     images: [asset('assets/services/spaces-01.webp'), asset('assets/services/spaces-project-02.webp'), asset('assets/services/spaces-project-03.webp'), asset('assets/services/spaces-04.webp')],
-    imageCaptions: ['OKRA Project — Photomontage of a physical model on an actual wall.', 'Artwork Photomontage — Universidad Siglo 21 Campus. Photomontage of a physical model on an image provided by Universidad Siglo 21.', 'Premio Azcuy Project — Photomontage of a physical model on a photograph provided by the organizer.', 'Office Art Project — Original ink and watercolor artworks presented in an AI-generated photomontage.'],
+    imageCaptions: ['OKRA Project — Photomontage of a physical model on an actual wall.', 'Premio Azcuy Project — Photomontage of a physical model on a photograph provided by the organizer.', 'Artwork Photomontage — Universidad Siglo 21 Campus. Photomontage of a physical model on an image provided by Universidad Siglo 21.', 'Office Art Project — Original ink and watercolor artworks presented in an AI-generated photomontage.'],
     shortDescription: 'Artistic proposals for public, professional and shared spaces.',
     paragraphs: [
       'Development of artistic proposals for public and professional spaces, such as hotels, banks, offices, corporate buildings, private hospitals, medical practices or professional offices, conference rooms and other work and gathering spaces.',
