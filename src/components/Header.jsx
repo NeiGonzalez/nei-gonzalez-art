@@ -37,7 +37,7 @@ export default function Header() {
             </NavLink>
           ))}
           <span className="nav-divider" aria-hidden="true" />
-          <Link className="language-button" to="/spanish-under-construction" onClick={() => setOpen(false)}>ESPAÑOL</Link>
+          <Link className="language-button" to="/spanish-under-construction" onClick={() => setOpen(false)}>SPANISH</Link>
         </nav>
       </div>
     </header>

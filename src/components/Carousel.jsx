@@ -31,8 +31,8 @@ export default function Carousel({ images }) {
             <h1>WEBSITE UNDER CONSTRUCTION</h1>
             <p>The website is currently under construction. The artworks shown are original works by the artist, displayed here as placeholders for testing the website while its content is being developed.</p>
             <span className="construction-divider" />
-            <h2>SITIO WEB EN CONSTRUCCIÓN</h2>
-            <p>El sitio web está en construcción. Las obras que se muestran son originales de la artista y se presentan aquí de manera provisional, a modo de prueba, mientras se desarrolla el contenido definitivo de la web.</p>
+            <h2>WEBSITE UNDER CONSTRUCTION</h2>
+            <p>This website is under construction. The artworks shown are original works by the artist, displayed provisionally while the final website content is being developed.</p>
           </div>
         </div>
       ) : <img className={`hero-image group-${current.group || 'default'}`} src={current.src} alt={current.alt || ''} fetchPriority="high" decoding="async" />)}
