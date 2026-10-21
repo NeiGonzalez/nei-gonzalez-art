@@ -1,33 +1,16 @@
-import { useEffect, useMemo, useState } from 'react'
-
-function controlledShuffle(images) {
-  if (images.length < 2) return [...images]
-  const first = images[0]
-  const rest = images.slice(1)
-  const groups = [...new Set(rest.map((image) => image.group || 'default'))]
-  if (groups.length < 2) return [first, ...rest.sort(() => Math.random() - 0.5)]
-  const buckets = Object.fromEntries(groups.map((group) => [group, [...rest.filter((image) => (image.group || 'default') === group)].sort(() => Math.random() - 0.5)]))
-  const result = [first]
-  let previous = first.group || 'default'
-  while (groups.some((group) => buckets[group].length)) {
-    const options = groups.filter((group) => buckets[group].length && group !== previous)
-    const group = options[Math.floor(Math.random() * options.length)] || groups.find((item) => buckets[item].length)
-    result.push(buckets[group].shift())
-    previous = group
-  }
-  return result
-}
+import { useEffect, useState } from 'react'
 
 export default function Carousel({ images }) {
-  const orderedImages = useMemo(() => controlledShuffle(images), [images])
+  const orderedImages = images
   const [index, setIndex] = useState(0)
 
   useEffect(() => {
-    orderedImages.forEach((image) => {
-      const preload = new Image()
-      if (image.src) preload.src = image.src
-    })
-  }, [orderedImages])
+    if (orderedImages.length < 2) return
+    const nextImage = orderedImages[(index + 1) % orderedImages.length]
+    if (!nextImage?.src) return
+    const preload = new Image()
+    preload.src = nextImage.src
+  }, [index, orderedImages])
 
   useEffect(() => {
     if (orderedImages.length < 2) return undefined
